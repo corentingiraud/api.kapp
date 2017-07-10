@@ -25,7 +25,7 @@ userSchema.methods.validPassword = function(password) {
 };
 
 userSchema.methods.validCode = function(code) {
-    return bcrypt.compareSync(code, this.local.password);
+    return bcrypt.compareSync(code, this.local.code);
 };
 
 // create the model for users and expose it to our app

@@ -38,7 +38,15 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.post('/api/adherents/new', isLoggedIn, function (req, res) {
+    app.get('/api/users/me', function (req, res) {
+        if(req.isAuthenticated()) {
+            res.status(200).send({code:"ok", message:""});
+        } else {
+            res.status(200).send({code:"err", message:"Vous n'êtes pas identifié"});
+        }
+    });
+
+    app.post('/api/adherents/new', isLoggedInWithCode, function (req, res) {
         adherentModel.create({
             nom: req.body.nom,
             prenom: req.body.prenom,
@@ -92,7 +100,8 @@ function isLoggedIn(req, res, next) {
 } 
 
 function isLoggedInWithCode(req, res, next) {
-    if (req.isAuthenticated() && req.user.validCode(req.body.code)) {
+    console.log(req.query);
+    if (req.isAuthenticated() && req.user.validCode(req.query.code)) {
         return next();
     }
     const rep = {
