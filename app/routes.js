@@ -62,7 +62,7 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.delete('/api/adherents/:adherentId', isLoggedIn, function (req, res) {
+    app.delete('/api/adherents/:adherentId', isLoggedInWithCode, function (req, res) {
         adherentModel.remove({
             _id: req.params.adherentId
         }, function (err, adherent) {
