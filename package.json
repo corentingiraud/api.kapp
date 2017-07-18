@@ -4,6 +4,9 @@
   "description": "K-App is provide a large panel of usefull tools for associations",
   "main": "server.js",
   "author": "Corentin GIRAUD",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.4.3",
