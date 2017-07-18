@@ -1,31 +1,27 @@
-var express = require('express');
-var app = express();
-var mongoose = require('mongoose');
-var port = process.env.PORT || 8080;
-var database = require('./config/database');
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var passport = require('passport');
-var flash    = require('connect-flash');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
+const port = process.env.PORT || 8080;
+const database = require('./config/database');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-console.log(database.url);
 mongoose.connect(database.url);
 
-require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport);
 
 app.use(express.static('./public'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
-app.use(flash());
-app.use(cookieParser()); // read cookies (needed for auth)
+app.use(cookieParser());
 
-// required for passport session
 app.use(session({
   secret: 'kfet4everKfet4ever',
   saveUninitialized: true,
@@ -36,7 +32,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./app/routes.js')(app, passport);
+require('./app/controllers/main.js')(app);
 
 app.listen(port);
 console.log("App listening on port " + port);

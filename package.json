@@ -1,11 +1,10 @@
 {
-  "name": "node-todo",
+  "name": "k-app",
   "version": "0.0.1",
-  "description": "Simple todo application.",
+  "description": "K-App is provide a large panel of usefull tools for associations",
   "main": "server.js",
-  "author": "Scotch",
+  "author": "Corentin GIRAUD",
   "dependencies": {
-    "@protacon/ng-virtual-keyboard": "^0.6.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.4.3",
     "connect-flash": "^0.1.1",
