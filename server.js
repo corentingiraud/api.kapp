@@ -34,5 +34,9 @@ app.use(passport.session());
 
 require('./app/controllers/main.js')(app);
 
+app.get('/', function(req, res) {
+    res.send("{YO}");
+});
+
 app.listen(port);
 console.log("App listening on port " + port);
