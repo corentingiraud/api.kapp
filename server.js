@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const port = process.env.PORT || 8080;
+const port = 8080;
 const database = require('./config/database');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -33,10 +33,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./app/controllers/main.js')(app);
-
-app.get('/', function(req, res) {
-    res.send("{YO}");
-});
 
 app.listen(port);
 console.log("App listening on port " + port);
