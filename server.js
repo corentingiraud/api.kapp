@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const port = 8080;
+const port = process.env.PORT || 8080;
 const database = require('./config/database');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
