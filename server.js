@@ -13,26 +13,26 @@ const MongoStore = require('connect-mongo')(session);
 
 mongoose.connect(database.url);
 
-require('./config/passport')(passport);
+// require('./config/passport')(passport);
 
-app.use(express.static('./public'));
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({'extended': 'true'}));
-app.use(bodyParser.json());
-app.use(methodOverride('X-HTTP-Method-Override'));
-app.use(cookieParser());
+// app.use(morgan('dev'));
+// app.use(bodyParser.urlencoded({'extended': 'true'}));
+// app.use(bodyParser.json());
+// app.use(methodOverride('X-HTTP-Method-Override'));
+// app.use(cookieParser());
 
-app.use(session({
-  secret: 'kfet4everKfet4ever',
-  saveUninitialized: true,
-  resave: true,
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
-}));
+// app.use(session({
+//   secret: 'kfet4everKfet4ever',
+//   saveUninitialized: true,
+//   resave: true,
+//   store: new MongoStore({ mongooseConnection: mongoose.connection }),
+// }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-//require('./app/controllers/main.js')(app);
+// require('./app/controllers/main.js')(app);
+
 app.get('/', function (req, res, next) {
   res.send('Hello World!');
   next();
