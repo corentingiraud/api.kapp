@@ -32,9 +32,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-console.log("Yes");
-require('./app/controllers/main.js')(app);
-console.log("Yes 2");
+//require('./app/controllers/main.js')(app);
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
 
 app.listen(port);
 console.log("App listening on port " + port);
