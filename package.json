@@ -20,8 +20,7 @@
     "mongoose": "^4.4.12",
     "morgan": "^1.1.1",
     "passport": "^0.3.2",
-    "passport-local": "^0.1.6",
-    "pm2": "^2.6.1"
+    "passport-local": "^0.1.6"
   },
   "engines": {
     "node": "8.0.0"
