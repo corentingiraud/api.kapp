@@ -21,12 +21,12 @@ app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(cookieParser());
 
-// app.use(session({
-//   secret: 'kfet4everKfet4ever',
-//   saveUninitialized: true,
-//   resave: true,
-//   store: new MongoStore({ mongooseConnection: mongoose.connection }),
-// }));
+app.use(session({
+  secret: 'kfet4everKfet4ever',
+  saveUninitialized: true,
+  resave: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
