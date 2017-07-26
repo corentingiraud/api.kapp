@@ -32,8 +32,8 @@ app.use(session({
   saveUninitialized: true,
   proxy: undefined,
   cookie: {
-    secure: true,
-    maxAge: 36000000
+    secure: false,
+    httpOnly: false
   },
   rolling: true,
   unset: 'destroy'
