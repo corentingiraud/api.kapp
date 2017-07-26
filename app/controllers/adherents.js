@@ -4,12 +4,13 @@ const passport = require("passport");
 const auth = require("../middlewares/auth.js");
 const adherentModel = require('../models/adherent.js');
 
-router.get("/", auth.isLoggedIn, function (req, res) {
+router.get("/", auth.isLoggedIn, function (req, res, next) {
   adherentModel.find(function(err, adherents) {
     if (err) {
       res.send(err);
     }
     res.json(adherents);
+    next();
   });
 });
 
