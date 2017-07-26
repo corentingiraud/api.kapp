@@ -10,7 +10,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const cors = require('cors')
+const cors = require('cors');
 
 mongoose.connect(database.url);
 
@@ -23,12 +23,12 @@ app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(cookieParser());
 
-app.use(session({
-  secret: 'kfet4everKfet4ever',
-  saveUninitialized: true,
-  resave: true,
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
-}));
+// app.use(session({
+//   secret: 'kfet4everKfet4ever',
+//   saveUninitialized: true,
+//   resave: true,
+//   store: new MongoStore({ mongooseConnection: mongoose.connection }),
+// }));
 
 app.use(passport.initialize());
 app.use(passport.session());
