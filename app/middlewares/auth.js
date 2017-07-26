@@ -1,7 +1,7 @@
 const passport = require("passport");
 
 module.exports.isLoggedIn = (req, res, next) => {
-  console.log(req.isAuthenticated());
+  console.log(req.sessionID);
   if (req.isAuthenticated()){
     return next();
   }

@@ -16,6 +16,7 @@ router.post("/", auth.isAdmin, function(req, res, next) {
 });
 
 router.post("/login", function(req, res, next) {
+  console.log(req.sessionID);
   passport.authenticate('local-login', function(error, user, info) {
     if(error) {
       return res.status(500).json({code:"err", message: (error || "Erreur serveur.")});
