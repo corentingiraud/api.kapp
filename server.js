@@ -14,21 +14,32 @@ const cors = require('cors');
 
 mongoose.connect(database.url);
 
-require('./config/passport')(passport);
+app.use(cors({
+  credentials: true
+}));
 
 app.use(morgan('dev'));
-app.use(cors());
+
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(cookieParser());
 
-// app.use(session({
-//   secret: 'kfet4everKfet4ever',
-//   saveUninitialized: true,
-//   resave: true,
-//   store: new MongoStore({ mongooseConnection: mongoose.connection }),
-// }));
+app.use(session({
+  secret: 'kfet4everKfet4ever',
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  resave: false,
+  saveUninitialized: true,
+  proxy: undefined,
+  cookie: {
+    secure: true,
+    maxAge: 36000000
+  },
+  rolling: true,
+  unset: 'destroy'
+}));
+
+require('./config/passport')(passport);
 
 app.use(passport.initialize());
 app.use(passport.session());

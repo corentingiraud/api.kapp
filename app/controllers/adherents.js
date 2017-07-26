@@ -10,7 +10,6 @@ router.get("/", auth.isLoggedIn, function (req, res, next) {
       res.send(err);
     }
     res.json(adherents);
-    next();
   });
 });
 

@@ -1,8 +1,10 @@
 const passport = require("passport");
 
 module.exports.isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated())
+  console.log(req.isAuthenticated());
+  if (req.isAuthenticated()){
     return next();
+  }
   const rep = {
     code: "err",
     message: "Vous n'êtes pas identifié.",
