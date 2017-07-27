@@ -14,7 +14,6 @@ router.get("/", auth.isLoggedIn, function (req, res, next) {
 });
 
 router.post("/new", auth.isLoggedInWithCode, function (req, res) {
-  console.log(req.body);
   adherentModel.create({
     nom: req.body.nom,
     prenom: req.body.prenom,

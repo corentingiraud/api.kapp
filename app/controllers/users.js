@@ -16,7 +16,6 @@ router.post("/", auth.isAdmin, function(req, res, next) {
 });
 
 router.post("/login", function(req, res, next) {
-  console.log(req.sessionID);
   passport.authenticate('local-login', function(error, user, info) {
     if(error) {
       return res.status(500).json({code:"err", message: (error || "Erreur serveur.")});
@@ -35,9 +34,13 @@ router.get("/me", auth.isLoggedIn, function (req, res) {
   res.status(200).send({code:"ok", message: req.user.local.role});
 });
 
-router.post('/logout', function(req, res) {
-  req.logout();
-  res.send({code: "ok", message:"deconnexion reussie"});
+router.post('/logout', auth.isLoggedIn, function(req, res){
+    req.logOut();
+    req.session.destroy(function(err){
+      if(err)
+        res.send({code: "err", message:"err"});  
+      res.send({code: "ok", message:"Déconnexion réussie"});  
+    });
 });
 
 module.exports = router;

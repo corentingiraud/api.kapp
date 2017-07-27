@@ -24,14 +24,11 @@ var allowCrossDomain = function(req, res, next) {
 
 var sessionMiddleware = session({
   secret: 'kfet4everKfet4ever',
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  store: new MongoStore({ mongooseConnection: mongoose.connection }), //TODO Add TTL
   resave: false,
   saveUninitialized: true,
-  cookie: {
-    secure: false,
-    httpOnly: false
-  },
-});
+  unset: 'destroy',
+}); 
 
 const sessionProxy = function(req, res, next) {
   if (req.method !== "OPTIONS") {
@@ -40,15 +37,14 @@ const sessionProxy = function(req, res, next) {
   next();
 };
 
-app.use(allowCrossDomain);
-app.use(sessionProxy);
-
-app.use(morgan('dev'));
-
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(cookieParser());
+app.use(allowCrossDomain);
+app.use(sessionProxy);
+
+app.use(morgan('dev'));
 
 require('./config/passport')(passport);
 
